@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SENTIVA Beauty Bar — козметика, парфюми и подаръци в Ботевград</title>
+<meta name="description" content="SENTIVA Beauty Bar, Ботевград — професионална козметика за коса и лице, грим, оригинални и арабски парфюми, парфюмни разливки и подаръчни изделия. Онлайн поръчка с доставка в цялата страна.">
+<link rel="icon" href="img/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-media" aria-hidden="true"></div>
+    <div class="wrap hero-in">
+      <p class="eyebrow">Beauty Bar · Ботевград</p>
+      <h1>Професионална грижа<br><em>за коса, лице и аромат</em></h1>
+      <p class="lead">Салонна козметика за коса от KEEN, C:EHKO и ANEA, грим IMPALA, оригинални и арабски парфюми, парфюмни разливки и авторски подаръци — в магазина в Ботевград или с доставка до вас.</p>
+      <div class="hero-cta">
+        <a href="#catalog" class="btn btn-gold">Пазарувай онлайн</a>
+        <a href="#visit" class="btn btn-ghost">Посети ни</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap perks-wrap"><section class="perks" aria-label="Предимства">
+    <div><b>Доставка в цялата страна</b><span>с Еконт и Спиди — до офис или адрес</span></div>
+    <div><b>Плащане при получаване</b><span>наложен платеж, без предплащане</span></div>
+    <div><b>14 дни за връщане</b><span>на неотворени продукти</span></div>
+    <div><b>Вземане от магазина</b><span>безплатно, пл. „Саранск“ 8</span></div>
+  </section></div>
+
+  <section class="cats wrap" aria-label="Категории">
+    <a class="cat-tile" href="?cat=perfume#catalog" data-go="perfume">
+      <img src="img/tb-lattafa-yara.webp" alt="" loading="lazy">
+      <span class="cat-label"><b>Парфюми</b><small id="cnt-perfume"></small></span>
+    </a>
+    <a class="cat-tile" href="?cat=hair#catalog" data-go="hair">
+      <img src="img/anea-curl-power-stop-shampoan-i-maska.webp" alt="" loading="lazy">
+      <span class="cat-label"><b>Козметика за коса</b><small id="cnt-hair"></small></span>
+    </a>
+    <a class="cat-tile" href="?cat=makeup#catalog" data-go="makeup">
+      <img src="img/impala-spirala-spider.webp" alt="" loading="lazy">
+      <span class="cat-label"><b>Грим</b><small id="cnt-makeup"></small></span>
+    </a>
+    <a class="cat-tile" href="?cat=gift#catalog" data-go="gift">
+      <img src="img/promo1.webp" alt="" loading="lazy" style="background:#fff">
+      <span class="cat-label"><b>Подаръчни изделия</b><small id="cnt-gift"></small></span>
+    </a>
+  </section>
+
+  <section class="catalog wrap" id="catalog">
+    <div class="sec-head">
+      <p class="eyebrow">Онлайн магазин</p>
+      <h2 id="catTitle">Парфюми</h2>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button role="tab" data-cat="perfume">Парфюми</button>
+      <button role="tab" data-cat="hair">Коса</button>
+      <button role="tab" data-cat="makeup">Грим</button>
+      <button role="tab" data-cat="gift">Подаръчни изделия</button>
+    </div>
+
+    <div class="tools">
+      <div class="chips" id="chips"></div>
+      <div class="tool-row">
+        <label class="search">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input type="search" id="q" placeholder="Търси продукт или марка…" autocomplete="off">
+        </label>
+        <select id="brand" aria-label="Марка"></select>
+        <select id="sort" aria-label="Подреди">
+          <option value="">Препоръчани</option>
+          <option value="asc">Цена: ниска → висока</option>
+          <option value="desc">Цена: висока → ниска</option>
+          <option value="name">Име А–Я</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="result-count" id="resultCount" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="decants" id="decants">
+    <div class="wrap decants-in">
+      <div>
+        <p class="eyebrow">Парфюмни разливки</p>
+        <h2>Опитайте аромата,<br>преди да се влюбите в него</h2>
+        <p>Предлагаме разливки от парфюмите в нашия каталог — малко количество в удобен флакон, с което да носите аромата няколко дни и да видите как се развива върху вашата кожа.</p>
+        <ul class="ticks">
+          <li>Идеални за пътуване и за чантата</li>
+          <li>Чудесен подарък и начин да откриете нов аромат</li>
+          <li>Разливки и от дизайнерските, и от арабските парфюми</li>
+        </ul>
+        <a href="#visit" class="btn btn-gold">Попитайте за разливка</a>
+      </div>
+      <div class="decants-art">
+        <img src="img/montblanc-signiture-elixir-edp-d-90ml.webp" alt="Montblanc Signature Elixir" loading="lazy">
+        <img src="img/paco-rabanne-lady-million-edu-d-80ml.webp" alt="Paco Rabanne Lady Million" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="gifts-teaser wrap">
+    <div class="gt-text">
+      <p class="eyebrow">Подаръчни изделия</p>
+      <h2>Подарък, направен с ръце</h2>
+      <p>Освен козметика, SENTIVA предлага авторски изделия от епоксидна смола и масивна дървесина — ръчна изработка на основателя на бранда. Всяко е в единствен екземпляр. Изработваме и по поръчка.</p>
+      <p>Не знаете какво да подарите? Изберете <b>подаръчен ваучер</b> на стойност 10, 20 или 50 €.</p>
+      <a href="?cat=gift#catalog" data-go="gift" class="btn btn-gold">Разгледай подаръците</a>
+    </div>
+    <div class="gt-art">
+      <img src="img/voucher-20.webp" alt="Подаръчен ваучер SENTIVA 20 €" loading="lazy">
+      <img src="img/promo1.webp" alt="Комплект Styling Gel + Styling Gum" loading="lazy">
+    </div>
+  </section>
+
+  <section class="brands">
+    <div class="wrap">
+      <p class="eyebrow">Марки в Sentiva</p>
+      <ul class="brand-list" id="brandList"></ul>
+    </div>
+  </section>
+
+  <section class="blog-teaser wrap">
+    <div class="sec-head row">
+      <div><p class="eyebrow">Блог</p><h2>Ревюта и съвети</h2></div>
+      <a href="blog.html" class="btn btn-ghost">Всички статии</a>
+    </div>
+    <div class="post-grid" id="latestPosts"></div>
+  </section>
+
+  <section class="visit wrap" id="visit">
+    <div class="visit-card">
+      <img src="img/logo2.webp" alt="SENTIVA Beauty Bar" class="visit-logo" loading="lazy">
+      <div class="visit-info">
+        <p class="eyebrow">Посетете ни</p>
+        <h2>SENTIVA Beauty Bar</h2>
+        <dl id="visitInfo"></dl>
+        <p class="muted">Заповядайте в магазина за съвет, разливка или подарък — или поръчайте онлайн с доставка до вас.</p>
+        <a class="btn btn-gold" id="mapLink" target="_blank" rel="noopener" href="#">Виж на картата</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Product detail -->
+<dialog class="modal" id="modal" aria-labelledby="mTitle">
+  <button class="x" data-close aria-label="Затвори">×</button>
+  <div class="modal-body">
+    <div class="m-img" id="mImg"></div>
+    <div class="m-info">
+      <p class="eyebrow" id="mBrand"></p>
+      <h3 id="mTitle"></h3>
+      <div class="m-tags" id="mTags"></div>
+      <p class="m-price" id="mPrice"></p>
+      <div class="m-buy" id="mBuy"></div>
+      <p id="mText"></p>
+      <div id="mBenefits"></div>
+      <div id="mUsage"></div>
+    </div>
+  </div>
+</dialog>
+
+<script src="products.js"></script>
+<script src="blog-data.js"></script>
+<script src="layout.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

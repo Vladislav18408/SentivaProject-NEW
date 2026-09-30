@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Поръчка — SENTIVA Beauty Bar</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="img/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="checkout">
+
+<main class="wrap page">
+  <div class="sec-head">
+    <p class="eyebrow">Поръчка</p>
+    <h1 class="page-title">Завършване на поръчката</h1>
+  </div>
+
+  <div id="emptyCart" class="empty-state" hidden>
+    <p>Количката ви е празна.</p>
+    <a href="index.html#catalog" class="btn btn-gold">Към магазина</a>
+  </div>
+
+  <div class="checkout" id="checkout" hidden>
+    <!-- Netlify Forms: the order is emailed to the shop when the site is hosted on Netlify. -->
+    <form class="co-form" id="orderForm" name="order" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="order">
+      <input type="hidden" name="order-id">
+      <textarea name="order-items" hidden></textarea>
+      <input type="hidden" name="order-total">
+      <p hidden><label>Не попълвайте: <input name="bot-field"></label></p>
+
+      <fieldset>
+        <legend>1. Данни за контакт</legend>
+        <div class="f-row">
+          <label>Име и фамилия *<input name="name" required autocomplete="name"></label>
+          <label>Телефон *<input name="phone" type="tel" required autocomplete="tel" placeholder="08X XXX XXXX" pattern="[0-9 +()-]{8,}"></label>
+        </div>
+        <label><span>Имейл <span class="muted">(за потвърждение)</span></span><input name="email" type="email" autocomplete="email"></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Доставка</legend>
+        <div class="options" id="shipOpts">
+          <label class="opt"><input type="radio" name="delivery" value="Еконт — до офис" checked><span><b>Еконт — до офис</b><small>1–2 работни дни</small></span></label>
+          <label class="opt"><input type="radio" name="delivery" value="Спиди — до офис"><span><b>Спиди — до офис</b><small>1–2 работни дни</small></span></label>
+          <label class="opt"><input type="radio" name="delivery" value="Куриер — до адрес"><span><b>До адрес</b><small>с Еконт или Спиди</small></span></label>
+          <label class="opt"><input type="radio" name="delivery" value="Вземане от магазина"><span><b>Вземане от магазина</b><small>безплатно · Ботевград</small></span></label>
+        </div>
+        <div id="shipFields">
+          <div class="f-row">
+            <label>Град / село *<input name="city" required autocomplete="address-level2"></label>
+            <label>Пощенски код<input name="postcode" inputmode="numeric" autocomplete="postal-code"></label>
+          </div>
+          <label id="addrLabel"><span id="addrText">Офис на Еконт *</span><input name="address" required placeholder="напр. офис Ботевград — Център"></label>
+        </div>
+        <p class="muted small" id="pickupNote" hidden>Ще ви се обадим, когато поръчката е готова. Адрес: <span id="pickupAddr"></span>.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. Плащане</legend>
+        <div class="options">
+          <label class="opt"><input type="radio" name="payment" value="Наложен платеж" checked><span><b id="payLabel">Наложен платеж</b><small id="payHint">плащате при получаване на пратката</small></span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>4. Бележка</legend>
+        <label><span class="muted small">Номер на ваучер, пожелание за подаръчна опаковка, удобно време за доставка…</span><textarea name="note" rows="3"></textarea></label>
+      </fieldset>
+
+      <label class="consent"><input type="checkbox" name="consent" value="да" required> Прочетох и приемам <a href="terms.html#terms" target="_blank">Общите условия</a> и <a href="terms.html#privacy" target="_blank">Политиката за поверителност</a>. *</label>
+
+      <p class="form-error" id="formError" role="alert" hidden></p>
+      <button class="btn btn-gold btn-lg" type="submit" id="submitBtn">Потвърди поръчката</button>
+    </form>
+
+    <aside class="co-summary">
+      <h2>Вашата поръчка</h2>
+      <ul class="co-lines" id="coLines"></ul>
+      <dl class="co-totals">
+        <div><dt>Продукти</dt><dd id="coSub"></dd></div>
+        <div><dt>Доставка</dt><dd id="coShip"></dd></div>
+        <div class="grand"><dt>Общо</dt><dd id="coTotal"></dd></div>
+      </dl>
+      <p class="muted small" id="coShipNote"></p>
+    </aside>
+  </div>
+
+  <div class="done" id="done" hidden>
+    <p class="eyebrow">Благодарим ви!</p>
+    <h2>Поръчката е приета</h2>
+    <p>Номер на поръчката: <b id="doneId"></b></p>
+    <p class="muted">Ще се свържем с вас по телефона, за да я потвърдим. Проверете имейла си, ако сте го посочили.</p>
+    <a href="index.html" class="btn btn-gold">Обратно към магазина</a>
+  </div>
+
+  <div class="done" id="fallback" hidden>
+    <p class="eyebrow">Почти готово</p>
+    <h2>Поръчката не можа да бъде изпратена автоматично</h2>
+    <p class="muted">Копирайте текста по-долу и ни го изпратете в съобщение в Instagram или по телефона — ще я обработим веднага.</p>
+    <textarea id="fallbackText" rows="10" readonly></textarea>
+    <div class="hero-cta">
+      <button class="btn btn-gold" id="copyOrder">Копирай поръчката</button>
+      <a class="btn btn-ghost" id="igLink" target="_blank" rel="noopener" href="#">Пиши ни в Instagram</a>
+    </div>
+  </div>
+</main>
+
+<script src="products.js"></script>
+<script src="layout.js"></script>
+<script src="checkout.js"></script>
+</body>
+</html>
