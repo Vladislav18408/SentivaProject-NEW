@@ -1,4 +1,4 @@
-// Blog posts. Newest first. `products` links product ids from products.js ("Купи" buttons under the post).
+// Blog posts. Newest first. `products` links product ids from products.js ("Попитай" buttons under the post).
 window.POSTS = [
   {
     id: 'revyu-difiaba-charcolite',

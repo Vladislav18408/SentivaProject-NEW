@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Продукти — SENTIVA Beauty Bar</title>
+<meta name="description" content="Каталог на SENTIVA Beauty Bar: парфюми, козметика за коса, грим и подаръчни изделия. Изберете продукт и ни попитайте за наличност, цена или съвет.">
+<link rel="icon" href="img/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="products.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="products">
+
+<main id="main">
+  <header class="cat-head wrap">
+    <p class="eyebrow" data-reveal>Каталог</p>
+    <h1 data-reveal style="--d:.08s"><span id="pageTitle">Всички продукти</span> <sup id="pageCount"></sup></h1>
+    <p class="cat-sub" id="pageSub" data-reveal style="--d:.16s">Изберете продукт и ни попитайте — ще ви отговорим за наличност, цена и как да го получите.</p>
+    <nav class="cat-tabs" id="tabs" aria-label="Категории" data-reveal style="--d:.24s"><span class="tab-ink" id="tabInk" aria-hidden="true"></span></nav>
+  </header>
+
+  <div class="shop wrap">
+    <aside class="filters" id="filters" aria-label="Филтри">
+      <div class="filters-head">
+        <h2>Филтри</h2>
+        <button class="x" type="button" id="filtersClose" aria-label="Затвори филтрите">×</button>
+      </div>
+      <label class="search">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <input type="search" id="q" placeholder="Търси продукт или марка…" autocomplete="off" aria-label="Търсене">
+      </label>
+      <div class="f-group" id="chipGroup">
+        <h3 id="chipTitle">Вид</h3>
+        <div class="chips" id="chips"></div>
+      </div>
+      <div class="f-group">
+        <h3>Марка</h3>
+        <ul class="brand-checks" id="brands"></ul>
+      </div>
+      <div class="f-group">
+        <h3>Цена</h3>
+        <div class="chips" id="priceChips">
+          <button class="chip" type="button" data-price="" aria-pressed="true">Всички</button>
+          <button class="chip" type="button" data-price="0-25">до 25 €</button>
+          <button class="chip" type="button" data-price="25-50">25 – 50 €</button>
+          <button class="chip" type="button" data-price="50-">над 50 €</button>
+        </div>
+      </div>
+      <button class="link-btn" type="button" id="reset">Изчисти филтрите</button>
+    </aside>
+
+    <section class="results" aria-labelledby="pageTitle">
+      <div class="results-bar">
+        <button class="btn btn-ghost btn-sm filters-open" type="button" id="filtersOpen">Филтри <span id="filterCount"></span></button>
+        <p class="result-count" id="resultCount" aria-live="polite"></p>
+        <label class="sort"><span class="sr">Подреди</span>
+          <select id="sort">
+            <option value="">Препоръчани</option>
+            <option value="asc">Цена: ниска → висока</option>
+            <option value="desc">Цена: висока → ниска</option>
+            <option value="name">Име А–Я</option>
+          </select>
+        </label>
+      </div>
+      <div class="active-filters" id="activeFilters"></div>
+      <div class="grid" id="grid"></div>
+    </section>
+  </div>
+</main>
+<div class="filters-scrim" id="filtersScrim" hidden></div>
+
+<!-- Product detail: slides in from the side -->
+<dialog class="sheet" id="sheet" aria-labelledby="sTitle">
+  <button class="x" type="button" data-close aria-label="Затвори">×</button>
+  <div class="sheet-img" id="sImg"></div>
+  <div class="sheet-body">
+    <p class="eyebrow" id="sBrand"></p>
+    <h2 id="sTitle"></h2>
+    <div class="s-tags" id="sTags"></div>
+    <div class="s-price" id="sPrice"></div>
+    <div class="s-cta">
+      <button class="btn btn-gold" type="button" id="sAsk">Попитай за продукта</button>
+      <button class="btn btn-ghost" type="button" id="sShare">Сподели</button>
+    </div>
+    <p class="s-note">Покупката уговаряме лично — пишете ни и ще потвърдим наличност, крайна цена и как да получите продукта.</p>
+    <p class="s-text" id="sText"></p>
+    <div id="sBenefits"></div>
+    <div id="sUsage"></div>
+    <div class="s-similar" id="sSimilar"></div>
+  </div>
+</dialog>
+
+<script src="products.js"></script>
+<script src="layout.js"></script>
+<script src="catalog.js"></script>
+</body>
+</html>
