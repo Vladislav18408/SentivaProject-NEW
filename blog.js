@@ -1,6 +1,7 @@
 (() => {
   const $ = s => document.querySelector(s);
-  const { esc, eur, Cart } = window;
+  const { esc } = window;
+  const { imgHTML, priceHTML } = window.ProductUI;
   const POSTS = window.POSTS || [], REVIEWS = window.REVIEWS || [], PRODUCTS = window.PRODUCTS || [];
   const fmtDate = iso => new Date(iso + 'T12:00').toLocaleDateString('bg-BG', { day: 'numeric', month: 'long', year: 'numeric' });
   let kind = '';
@@ -13,6 +14,7 @@
         <div class="post-img">${p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy">` : ''}</div>
         <div class="post-body"><span class="post-kind">${esc(p.kind)} · ${fmtDate(p.date)}</span><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p></div>
       </a>`).join('');
+    window.Motion.scan($('#posts'));
   }
   $('#kinds').addEventListener('click', e => { const b = e.target.closest('[data-kind]'); if (b) { kind = b.dataset.kind; renderList(); } });
 
@@ -29,13 +31,12 @@
     const prods = p.products.map(id => PRODUCTS.find(x => x.id === id)).filter(Boolean);
     $('#pProducts').innerHTML = prods.length ? `<h3 class="rel-title">Продуктите от статията</h3><div class="rel-grid">${prods.map(x => `
       <div class="rel">
-        <div class="thumb">${x.img ? `<img src="${esc(x.img)}" alt="">` : ''}</div>
-        <div><span class="card-brand">${esc(x.brand)}</span><b>${esc(x.display)}</b><span class="price">${x.price != null ? eur(x.price) : ''}</span></div>
-        ${x.price != null ? `<button class="btn btn-gold btn-sm" data-add="${esc(x.id)}">Купи</button>` : ''}
+        <a class="thumb" href="products.html?p=${esc(x.id)}">${imgHTML(x)}</a>
+        <a href="products.html?p=${esc(x.id)}"><span class="card-brand">${esc(x.brand)}</span><b>${esc(x.display)}</b>${priceHTML(x)}</a>
+        <button class="btn btn-gold btn-sm" type="button" data-ask="${esc(x.id)}">Попитай</button>
       </div>`).join('')}</div>` : '';
     window.scrollTo(0, 0);
   }
-  $('#pProducts').addEventListener('click', e => { const b = e.target.closest('[data-add]'); if (b) Cart.add(b.dataset.add); });
   $('#back').addEventListener('click', e => { e.preventDefault(); history.pushState(null, '', 'blog.html'); showPost(null); });
   window.addEventListener('hashchange', () => showPost(location.hash.slice(1)));
 
